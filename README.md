@@ -15,6 +15,11 @@ Kafka consumer and producers will be created based on the configuration and the 
 Go to project (frontend or backend) directory and run below command
 
 ```mvn clean spring-boot:run```
+```mvn clean install```
+
+java -jar fronend/target/frontend-1.0-RELEASE.jar
+
+java -jar backend/target/backend-1.0-RELEASE.ja
 
 Then browse
 
