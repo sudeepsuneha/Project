@@ -1,17 +1,42 @@
 pipeline {
-        agent any
-        stages {
-            stage(build) {
-                steps {   sh 'mvn clean install'  }
-            }
-            stage(test) {
-                steps {  sh 'mvn test' }
-                post {
-                    always {
-                        junit 'target/surefire-reports/*.xml'
-                        archiveArtifacts 'target/*.jar'
-                    }
+    agent any
+
+
+   stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    git branch: 'main', url: 'https://github.com/sudeepsuneha/Project.git/'
                 }
             }
+        }
+
+
+       stage('Clean') {
+            steps {
+                script {
+                    sh 'mvn clean'
+                }
             }
         }
+
+
+       stage('Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+
+       stage('Install') {
+            steps {
+                script {
+                    sh 'mvn clean install'
+                    
+                }
+            }
+        }
+    }
+}
